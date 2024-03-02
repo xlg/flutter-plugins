@@ -348,11 +348,11 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
 //    )
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, CHANNEL_NAME)
-        channel?.setMethodCallHandler(this)
-        context = flutterPluginBinding.applicationContext
-        threadPoolExecutor = Executors.newFixedThreadPool(4)
+//        scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+//        channel = MethodChannel(flutterPluginBinding.binaryMessenger, CHANNEL_NAME)
+//        channel?.setMethodCallHandler(this)
+//        context = flutterPluginBinding.applicationContext
+//        threadPoolExecutor = Executors.newFixedThreadPool(4)
 //        checkAvailability()
 //        if (healthConnectAvailable) {
 //            healthConnectClient =
@@ -363,8 +363,8 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel = null
         activity = null
-        threadPoolExecutor!!.shutdown()
-        threadPoolExecutor = null
+//        threadPoolExecutor!!.shutdown()
+//        threadPoolExecutor = null
     }
 
     // This static function is optional and equivalent to onAttachedToEngine. It supports the old
@@ -419,19 +419,19 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
 
     private  fun onHealthConnectPermissionCallback(permissionGranted: Set<String>)
     {
-        if(permissionGranted.isEmpty()) {
-            mResult?.success(false);
-            Log.i("FLUTTER_HEALTH", "Access Denied (to Health Connect)!")
-
-        }else {
-            mResult?.success(true);
-            Log.i("FLUTTER_HEALTH", "Access Granted (to Health Connect)!")
-        }
+//        if(permissionGranted.isEmpty()) {
+//            mResult?.success(false);
+//            Log.i("FLUTTER_HEALTH", "Access Denied (to Health Connect)!")
+//
+//        }else {
+//            mResult?.success(true);
+//            Log.i("FLUTTER_HEALTH", "Access Granted (to Health Connect)!")
+//        }
 
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        TODO("Not yet implemented")
+
     }
 
 //    private fun keyToHealthDataType(type: String): DataType {
@@ -979,7 +979,7 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
 //
 //        // Finish session setup
 //        val session = Session.Builder()
-//            .setName(activityType) // TODO: Make a sensible name / allow user to set name
+//            .setName(activityType) //
 //            .setDescription("")
 //            .setIdentifier(UUID.randomUUID().toString())
 //            .setActivity(activityType)
@@ -1869,7 +1869,6 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
 //        );
 //    }
 //
-//    // TODO: Find alternative to SOURCE_ID or make it nullable?
 //    fun convertRecord(record: Any, dataType: String): List<Map<String, Any>> {
 //        val metadata = (record as Record).metadata
 //        when (record) {
@@ -2377,8 +2376,7 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
     )
 
     override fun onMethodCall(call: MethodCall, result: Result) {
-
-
+        result.success(true)
     }
 
 //    private val MapMealTypeToTypeHC = hashMapOf<String, Int>(
